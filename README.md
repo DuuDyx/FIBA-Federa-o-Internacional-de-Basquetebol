@@ -44,11 +44,11 @@ Os seguintes campos são mapeados a partir do dataset:
   "nacionalidade": "ARG",
   "url": "https://fiba.basketballen/players/163689-melisa-gretter"
 }
-
+```
 ### 1.4 Justificativa da Escolha
 A escolha desse conjunto de dados se justifica por conter múltiplos campos de tipos distintos (tipagem mista e dados opcionais), exigindo tratamento estruturado em C. 
 Além disso, a chave composta baseada em texto valida cenários complexos de ordenação (comparação lexicográfica de strings). O volume total de dados gerados ao fim da coleta servirá como um excelente cenário para testes de estresse** de desempenho das árvores.
-```
+
 ---
 
 ## 2. Estrutura(s) de Árvore Escolhida(s)
