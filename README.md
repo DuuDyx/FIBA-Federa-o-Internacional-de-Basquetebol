@@ -74,6 +74,16 @@ Ambas garantem complexidade de tempo de pior caso em O(\log n), mas usam estrat�
 | **Percurso (Pré/Em/Pós-ordem)** | O(n) | O(n) | O(n) |
 | **Rebalanceamento (Rotação)** | O(1) | O(1) | O(1) |
 
+#### Árvore Rubro-Negra
+
+| Operação | Melhor Caso | Caso Médio | Pior Caso |
+| :--- | :---: | :---: | :---: |
+| **Inserção** | O(log n) | O(log n) | O(log n) |
+| **Remoção** | O(log n) | O(log n) | O(log n) |
+| **Busca** | O(log n) | O(log n) | O(log n) |
+| **Percurso (Pré/Em/Pós-ordem)** | O(n) | O(n) | O(n) |
+| **Rebalanceamento (Rotação)** | O(1) | O(1) | O(1) |
+
 Como a AVL mantém o fator de balanceamento de cada nó entre -1 e 1, a altura da árvore é sempre O(log n), o que garante que inserção, remoção e busca nunca degradam para O(n).
 
 ## 3. Plano de Testes
