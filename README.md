@@ -105,8 +105,6 @@ Avaliar o funcionamento das árvores AVL e Rubro-Negra, observando a implementa�
 | Árvore vazia | buscar, remover e percorrer sem nenhum nó | A busca retorna NULL, a remoção não faz nada e o percurso não imprime nada. Nada deve travar. |
 | Inserção em ordem crescente | inserir todos os registros já ordenados pela chave | Nenhum registro se perde. Na AVL a altura fica em torno de ⌊log₂ n⌋ (com 15.800 registros, altura 13). Na Rubro-Negra fica no máximo 2·log(n+1).|
 | Chave duplicada | inserir alguém com o mesmo nome, nacionalidade e data de nascimento de um jogador que já está na árvore | O novo registro é rejeitado e o original continua como estava (não atualizamos). A quantidade de nós e a altura não mudam. |
-| Mesmo nome e nacionalidade, data diferente | dois homônimos com datas de nascimento diferentes | Os dois entram, porque a data de nascimento diferencia as chaves (no dataset isso acontece 35 vezes). |
-| Remoção de chave inexistente | remover um jogador que não está na árvore | A árvore fica igual e a função avisa que nada foi removido. |
 | Remoção com rebalanceamento em cascata | remover vários nós que desbalanceiam os ancestrais | Depois de cada remoção a árvore continua balanceada (|FB| ≤ 1 na AVL, regras rubro-negras válidas na Rubro-Negra), com um nó a menos e o percurso em ordem ainda crescente. |
 | Busca do último registro em ordem alfabética | buscar o maior elemento da árvore | Ele é encontrado com no máximo "altura" comparações, ou seja, O(log n). |
 
