@@ -2,7 +2,7 @@
 
 # Integrantes do Grupo
 * Eduardo Dylan Mendes — RA: 43541194 
-* Erick Ronald Huanca Clemente — RGM 43541194
+* Erick Ronald Huanca Clemente — RGM 44261837
 *	Marcos Antonio Ribeiro Lago Junior 46450769
 *	Vitor Boer Blanco — RGM 42402794
 *	Vagner Ferreira José Maria — RGM 440554807
@@ -13,7 +13,7 @@
 ### 1.1 Descrição
 O dataset é composto por dados de jogadores(as) de basquete cadastrados na **FIBA** (Federação Internacional de Basquete), obtidos via *scraping* do site oficial `fiba.basketball`. Cada registro representa um(a) atleta e contém informações como nome, data de nascimento, altura, seleção pela qual atuou e nacionalidade.
 
-* **Formato original:** JSON (`fiba_jogadores.json`), contendo uma lista de objetos (um por jogador).
+* **Formato original:** JSON (`fiba_jogadores.json`), contendo uma lista de objetos (um por jogador) ao todo há mais de 90 mil jogadores.
 * **Tratamento:** Foi utilizado um script em **Python** para transformar o JSON em um arquivo binário `.dat`, otimizando a leitura e manipulação direta na linguagem C.
 
 ### 1.2 Fonte
@@ -98,15 +98,17 @@ Avaliar o funcionamento das árvores AVL e Rubro-Negra, observando a implementa�
 ● Comparação direta entre AVL e Rubro-Negra: inserir o mesmo dataset nas duas estruturas e comparar altura final da árvore, número de rotações (e recolorações, no caso da Rubro-Negra) e tempo de execução de cada operação.
 
 
-```
-### 3.3 Casos Extremos (Edge Cases)
+### 3.3 Casos extremos (edge cases)
 
-| Operação | Caso Extremo | AVL | Rubro-Negra |
-| :--- | :--- | :---: | :---: |
-| **Inserção** | Registros inseridos em ordem estritamente crescente pela chave | O(log n) | O(log n) |
-| **Remoção** | Elementos removidos de posições estratégicas que forçam rebalanceamentos em cascata | O(log n) | O(log n) |
-| **Busca** | Localização do último registro teórico da ordem alfabética | O(log n) | O(log n) |
-| **Inserção** | Tentativa de reinserir uma chave composta já existente (duplicada) | O(log n) | O(log n) |
+| Caso | O que vamos testar | Comportamento esperado |
+|------|--------------------|------------------------|
+| Árvore vazia | buscar, remover e percorrer sem nenhum nó | A busca retorna NULL, a remoção não faz nada e o percurso não imprime nada. Nada deve travar. |
+| Inserção em ordem crescente | inserir todos os registros já ordenados pela chave | Nenhum registro se perde. Na AVL a altura fica em torno de ⌊log₂ n⌋ (com 15.800 registros, altura 13). Na Rubro-Negra fica no máximo 2·log(n+1).|
+| Chave duplicada | inserir alguém com o mesmo nome, nacionalidade e data de nascimento de um jogador que já está na árvore | O novo registro é rejeitado e o original continua como estava (não atualizamos). A quantidade de nós e a altura não mudam. |
+| Mesmo nome e nacionalidade, data diferente | dois homônimos com datas de nascimento diferentes | Os dois entram, porque a data de nascimento diferencia as chaves (no dataset isso acontece 35 vezes). |
+| Remoção de chave inexistente | remover um jogador que não está na árvore | A árvore fica igual e a função avisa que nada foi removido. |
+| Remoção com rebalanceamento em cascata | remover vários nós que desbalanceiam os ancestrais | Depois de cada remoção a árvore continua balanceada (|FB| ≤ 1 na AVL, regras rubro-negras válidas na Rubro-Negra), com um nó a menos e o percurso em ordem ainda crescente. |
+| Busca do último registro em ordem alfabética | buscar o maior elemento da árvore | Ele é encontrado com no máximo "altura" comparações, ou seja, O(log n). |
 
 ---
 
