@@ -5,7 +5,7 @@
 * Erick Ronald Huanca Clemente — RGM 44261837
 *	Marcos Antonio Ribeiro Lago Junior 46450769
 *	Vitor Boer Blanco — RGM 42402794
-*	Vagner Ferreira José Maria — RGM 440554807
+*	Vagner Ferreira José Maria — RGM 44054807
 
 
 ## 1. Dataset
