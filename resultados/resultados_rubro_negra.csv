@@ -1,0 +1,10 @@
+arvore,operacao,n,operacoes,tempo_total_s,tempo_por_op_us,altura,rotacoes,recoloracoes
+rubro_negra,insercao,1000,1000,0.000526,0.526,11,579,515
+rubro_negra,busca,1000,2000,0.000340,0.170,11,0,0
+rubro_negra,remocao,1000,100,0.000032,0.322,11,44,14
+rubro_negra,insercao,10000,10000,0.008247,0.825,15,5770,5074
+rubro_negra,busca,10000,2000,0.000396,0.198,15,0,0
+rubro_negra,remocao,10000,1000,0.000653,0.653,15,400,86
+rubro_negra,insercao,90000,90000,0.123327,1.370,19,52276,46119
+rubro_negra,busca,90000,2000,0.000580,0.290,19,0,0
+rubro_negra,remocao,90000,9000,0.010336,1.148,19,3623,937
