@@ -62,7 +62,15 @@ Ambas garantem complexidade de tempo de pior caso em O(\log n), mas usam estrat�
 * A AVL aplica regras rígidas de altura (fator de balanceamento em \{-1, 0, 1\}), tornando as buscas cirurgicamente rápidas, sacrificando desempenho com rotações frequentes na inserção e remoção.
 * A Rubro-Negra é mais permissiva em seu balanceamento cromático, aceitando pequenas variações de altura para obter inserções e remoções muito mais baratas e performáticas.
 
-### 2.3 Análise de Complexidade
+### 2.3.1 Operações Implementadas
+[X]  Inserção
+[X]  Remoção
+[X]  Busca
+[X]  Percursos (pré-ordem, em ordem, pós-ordem)
+[X]  Balanceamento (se aplicável)
+
+
+### 2.3.2 Análise de Complexidade
 
 #### Árvore AVL
 
@@ -108,7 +116,23 @@ Avaliar o funcionamento das árvores AVL e Rubro-Negra, observando a implementa�
 | Remoção com rebalanceamento em cascata | remover vários nós que desbalanceiam os ancestrais | Depois de cada remoção a árvore continua balanceada (|FB| ≤ 1 na AVL, regras rubro-negras válidas na Rubro-Negra), com um nó a menos e o percurso em ordem ainda crescente. |
 | Busca do último registro em ordem alfabética | buscar o maior elemento da árvore | Ele é encontrado com no máximo "altura" comparações, ou seja, O(log n). |
 
----
+------------------------
+### 4.1 Pré-requisitos (Para Entrega 2)
+
+Para compilar e executar as árvores, você precisará de:
+
+*   **Compilador C (GCC):** Necessário para compilar os arquivos `.c`. 
+    *   *Windows:* Pode ser instalado através do MinGW-w64. Certifique-se de adicionar o caminho da pasta `bin` do GCC às variáveis de ambiente (PATH) do sistema.
+*   **Arquivo de Dados:** O arquivo `jogadores.dat` deve estar na pasta dataset.
+*   *Opcional:* Para visualizar os resultados gerados pelo benchmark, é recomendado ter o Excel ou outro leitor de planilhas (para abrir os arquivos `.csv`).
+
+*   ### 4.2 Instruções (Para Entrega 2)
+
+**1. Clonar o repositório e acessar a pasta:**
+git clone https://github.com/DuuDyx/FIBA-Federa-o-Internacional-de-Basquetebol.git
+cd FIBA-Federa-o-Internacional-de-Basquetebol
+*   Para rodar as o teste de benchmark primeiro entre na pasta src e rode os seguintes comandos gcc -Wall -Wextra -std=c11 -o avl avl.c em seguida: .\avl.exe --bench para a rubro negra apenas troque de avl para rubro negra em todas as seções que mencione avl
+------------------------
 
 ## 5. Referências
 * **FIBA** — Federação Internacional de Basquete. Disponível em: [https://fiba.basketball](https://fiba.basketball) [1]
