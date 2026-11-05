@@ -70,7 +70,7 @@ Ambas garantem complexidade de tempo de pior caso em O(\log n), mas usam estrat�
 [X]  Balanceamento (se aplicável)
 
 
-### 2.3.2 Análise de Complexidade
+### 2.4 Análise de Complexidade
 
 #### Árvore AVL
 
