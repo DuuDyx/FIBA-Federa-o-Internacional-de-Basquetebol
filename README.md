@@ -115,7 +115,9 @@ Avaliar o funcionamento das árvores AVL e Rubro-Negra, observando a implementa�
 | Chave duplicada | inserir alguém com o mesmo nome, nacionalidade e data de nascimento de um jogador que já está na árvore | O novo registro é rejeitado e o original continua como estava (não atualizamos). A quantidade de nós e a altura não mudam. |
 | Remoção com rebalanceamento em cascata | remover vários nós que desbalanceiam os ancestrais | Depois de cada remoção a árvore continua balanceada (|FB| ≤ 1 na AVL, regras rubro-negras válidas na Rubro-Negra), com um nó a menos e o percurso em ordem ainda crescente. |
 | Busca do último registro em ordem alfabética | buscar o maior elemento da árvore | Ele é encontrado com no máximo "altura" comparações, ou seja, O(log n). |
+
 3.5 Resultados Obtidos e Análise Comparativa
+
 Nossos resultados foram obtidos executando a rotina automatizada de benchmark (--bench). Os dados
 brutos foram salvos nos arquivos resultados_avl.csv e resultados_rubro_negra.csv na pasta resultados/.
 Nos testes, avaliamos três volumes progressivos de dados (n = 1.000, 10.000 e 90.000 registros). Para
