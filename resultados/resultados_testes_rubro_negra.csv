@@ -1,0 +1,47 @@
+arvore,caso,verificacao,resultado
+rubro_negra,"Caso 1 - Arvore vazia","buscar devolve NULL",OK
+rubro_negra,"Caso 1 - Arvore vazia","remover nao faz nada (removido = 0 e raiz continua NULL)",OK
+rubro_negra,"Caso 1 - Arvore vazia","pre/em/pos-ordem nao visitam nenhum no",OK
+rubro_negra,"Caso 1 - Arvore vazia","altura = -1",OK
+rubro_negra,"Caso 1 - Arvore vazia","contagem de nos = 0",OK
+rubro_negra,"Caso 1 - Arvore vazia","arvore vazia respeita as propriedades",OK
+rubro_negra,"Caso 1 - Arvore vazia","rb_liberar(NULL) nao trava",OK
+rubro_negra,"Caso 1 - Arvore vazia","apos inserir 1 no: a raiz e preta",OK
+rubro_negra,"Caso 1 - Arvore vazia","inserir 1 e remover 1 deixa a arvore vazia (raiz NULL)",OK
+rubro_negra,"Caso 1 - Arvore vazia","percurso apos esvaziar nao visita nada",OK
+rubro_negra,"Caso 2 - Insercao em ordem crescente (n = 15800)","nenhuma insercao foi rejeitada",OK
+rubro_negra,"Caso 2 - Insercao em ordem crescente (n = 15800)","contagem de nos = n (nenhum registro se perdeu)",OK
+rubro_negra,"Caso 2 - Insercao em ordem crescente (n = 15800)","todos os n registros sao encontrados pela busca",OK
+rubro_negra,"Caso 2 - Insercao em ordem crescente (n = 15800)","em-ordem sai em ordem crescente da chave",OK
+rubro_negra,"Caso 2 - Insercao em ordem crescente (n = 15800)","em-ordem visita exatamente n nos",OK
+rubro_negra,"Caso 2 - Insercao em ordem crescente (n = 15800)","propriedades da Rubro-Negra validas (raiz preta, sem vermelho-vermelho, mesma altura negra, ponteiros pai certos)",OK
+rubro_negra,"Caso 2 - Insercao em ordem crescente (n = 15800)","altura <= 2 * log2(n + 1)",OK
+rubro_negra,"Caso 3 - Chave duplicada","insercao da chave repetida e rejeitada (duplicado = 1)",OK
+rubro_negra,"Caso 3 - Chave duplicada","quantidade de nos nao mudou",OK
+rubro_negra,"Caso 3 - Chave duplicada","altura nao mudou",OK
+rubro_negra,"Caso 3 - Chave duplicada","nenhuma rotacao nem recoloracao foi feita",OK
+rubro_negra,"Caso 3 - Chave duplicada","o registro original continua na arvore",OK
+rubro_negra,"Caso 3 - Chave duplicada","o registro original NAO foi atualizado (altura_cm, url e selecao iguais)",OK
+rubro_negra,"Caso 3 - Chave duplicada","a cor do no original nao mudou",OK
+rubro_negra,"Caso 3 - Chave duplicada","propriedades da Rubro-Negra continuam validas",OK
+rubro_negra,"Caso 3 - Chave duplicada","mesmo nome e nascimento, nacionalidade diferente: NAO e duplicata",OK
+rubro_negra,"Caso 3 - Chave duplicada","mesmo nome e nacionalidade, nascimento diferente: NAO e duplicata",OK
+rubro_negra,"Caso 3 - Chave duplicada","propriedades validas apos as duas insercoes",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","arvore perfeita toda preta montada e valida",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","removendo cada um dos nos (uma vez por arvore nova): propriedades validas, contagem certa",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","alguma remocao disparou recoloracoes em mais de um nivel (cascata)",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","remover 2000 nos em ordem crescente: valida depois de CADA remocao (max 9 recol, 1 rot por remocao)",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","   ...e a arvore terminou vazia",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","remover 2000 nos em ordem decrescente: valida depois de CADA remocao (max 9 recol, 1 rot por remocao)",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","   ...e a arvore terminou vazia",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","remover 2000 nos em ordem pseudo-aleatoria: valida depois de CADA remocao (max 9 recol, 3 rot por remocao)",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","   ...e a arvore terminou vazia",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","remover 2000 nos em ordem sempre a raiz: valida depois de CADA remocao (max 9 recol, 1 rot por remocao)",OK
+rubro_negra,"Caso 4 - Remocao com rebalanceamento em cascata","   ...e a arvore terminou vazia",OK
+rubro_negra,"Caso 5 - Busca do ultimo registro em ordem alfabetica (n = 15800)","o maior elemento e encontrado",OK
+rubro_negra,"Caso 5 - Busca do ultimo registro em ordem alfabetica (n = 15800)","e o mesmo no que esta na ponta direita da arvore",OK
+rubro_negra,"Caso 5 - Busca do ultimo registro em ordem alfabetica (n = 15800)","o maior elemento nao tem filho a direita",OK
+rubro_negra,"Caso 5 - Busca do ultimo registro em ordem alfabetica (n = 15800)","comparacoes <= altura + 1  (altura conta arestas; o caminho tem altura+1 nos)",OK
+rubro_negra,"Caso 5 - Busca do ultimo registro em ordem alfabetica (n = 15800)","comparacoes <= 2 * log2(n+1) + 1  -> O(log n)",OK
+rubro_negra,"Caso 5 - Busca do ultimo registro em ordem alfabetica (n = 15800)","chave maior que todas nao e encontrada (e nao trava)",OK
+rubro_negra,"Caso 5 - Busca do ultimo registro em ordem alfabetica (n = 15800)","   ...e gasta no maximo altura + 1 comparacoes",OK
