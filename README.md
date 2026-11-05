@@ -115,132 +115,69 @@ Avaliar o funcionamento das árvores AVL e Rubro-Negra, observando a implementa�
 | Chave duplicada | inserir alguém com o mesmo nome, nacionalidade e data de nascimento de um jogador que já está na árvore | O novo registro é rejeitado e o original continua como estava (não atualizamos). A quantidade de nós e a altura não mudam. |
 | Remoção com rebalanceamento em cascata | remover vários nós que desbalanceiam os ancestrais | Depois de cada remoção a árvore continua balanceada (|FB| ≤ 1 na AVL, regras rubro-negras válidas na Rubro-Negra), com um nó a menos e o percurso em ordem ainda crescente. |
 | Busca do último registro em ordem alfabética | buscar o maior elemento da árvore | Ele é encontrado com no máximo "altura" comparações, ou seja, O(log n). |
-3.5 Resultados Obtidos e Análise Comparativa
-Nossos resultados foram obtidos executando a rotina automatizada de benchmark (--bench). Os dados
-brutos foram salvos nos arquivos resultados_avl.csv e resultados_rubro_negra.csv na pasta resultados/.
-Nos testes, avaliamos três volumes progressivos de dados (n = 1.000, 10.000 e 90.000 registros). Para
-cada volume n, inserimos todos os n atletas, executamos 2.000 buscas por amostragem e realizamos a
-remoção de 10% dos nós (100, 1.000 e 9.000 remoções, respectivamente).
-3.5.1 Árvore AVL — Resultados Medidos
-n Operação Nº ops Tempo
-Total (s)
 
-Tempo/op
-(µs) Altura Rotações Recoloraçõ
-es
-1.000 Inserção 1.000 0,000839 0,839 11 711 0
-1.000 Busca 2.000 0,000358 0,179 11 0 0
-1.000 Remoção 100 0,000065 0,651 11 42 0
-10.000 Inserção 10.000 0,012686 1,269 15 6.945 0
-10.000 Busca 2.000 0,000469 0,234 15 0 0
-10.000 Remoção 1.000 0,001042 1,042 15 429 0
-90.000 Inserção 90.000 0,300311 3,337 19 62.718 0
-90.000 Busca 2.000 0,000783 0,392 19 0 0
-90.000 Remoção 9.000 0,027248 3,028 19 3.894 0
+3.5 Resultados obtidos
 
-3.5.2 Árvore Rubro-Negra — Resultados Medidos
-n Operação Nº ops Tempo
-Total (s)
+Os números abaixo vêm do benchmark que rodamos com a flag --bench, e os arquivos completos estão na pasta /resultados (resultados_avl.csv e resultados_rubro_negra.csv). Testamos três volumes de jogadores: 1.000, 10.000 e 90.000. Em cada um deles, inserimos todos os registros, fizemos 2.000 buscas e removemos 10% dos nós. Em seguida, comparamos o que observamos com o que a teoria prevê.
+3.5.1 Árvore AVL
+Tabela 1 – Resultados da AVL
+n	Operação	Nº de ops	Tempo total (s)	Tempo/op (µs)	Altura	Rotações
+1.000	Inserção	1.000	0,000839	0,839	11	711
+1.000	Busca	2.000	0,000358	0,179	11	0
+1.000	Remoção	100	0,000065	0,651	11	42
+10.000	Inserção	10.000	0,012686	1,269	15	6.945
+10.000	Busca	2.000	0,000469	0,234	15	0
+10.000	Remoção	1.000	0,001042	1,042	15	429
+90.000	Inserção	90.000	0,300311	3,337	19	62.718
+90.000	Busca	2.000	0,000783	0,392	19	0
+90.000	Remoção	9.000	0,027248	3,028	19	3.894
 
-Tempo/op
-(µs) Altura Rotações Recoloraçõ
-es
-1.000 Inserção 1.000 0,000579 0,579 11 579 515
+3.5.2 Árvore Rubro-Negra
+Tabela 2 – Resultados da Rubro-Negra
+n	Operação	Nº de ops	Tempo total (s)	Tempo/op (µs)	Altura	Rotações	Recolor.
+1.000	Inserção	1.000	0,000579	0,579	11	579	515
+1.000	Busca	2.000	0,000344	0,172	11	0	0
+1.000	Remoção	100	0,000048	0,475	11	44	14
+10.000	Inserção	10.000	0,007953	0,795	15	5.770	5.074
+10.000	Busca	2.000	0,000450	0,225	15	0	0
+10.000	Remoção	1.000	0,000577	0,577	15	400	86
+90.000	Inserção	90.000	0,122236	1,358	19	52.276	46.119
+90.000	Busca	2.000	0,000662	0,331	19	0	0
+90.000	Remoção	9.000	0,013650	1,517	19	3.623	937
 
-1.000 Busca 2.000 0,000344 0,172 11 0 0
-1.000 Remoção 100 0,000048 0,475 11 44 14
-10.000 Inserção 10.000 0,007953 0,795 15 5.770 5.074
-10.000 Busca 2.000 0,000450 0,225 15 0 0
-10.000 Remoção 1.000 0,000577 0,577 15 400 86
-90.000 Inserção 90.000 0,122236 1,358 19 52.276 46.119
-90.000 Busca 2.000 0,000662 0,331 19 0 0
-90.000 Remoção 9.000 0,013650 1,517 19 3.623 937
+3.5.3 Comparação entre as duas árvores
+Para facilitar a leitura, juntamos os tempos por operação das duas estruturas e calculamos quantas vezes a AVL foi mais lenta que a Rubro-Negra (RN).
+Tabela 3 – Tempo por operação (µs) e razão AVL/RN
+n	Inserção AVL	Inserção RN	Razão	Busca AVL	Busca RN	Razão	Remoção AVL	Remoção RN	Razão
+1.000	0,839	0,579	1,45×	0,179	0,172	1,04×	0,651	0,475	1,37×
+10.000	1,269	0,795	1,60×	0,234	0,225	1,04×	1,042	0,577	1,81×
+90.000	3,337	1,358	2,46×	0,392	0,331	1,18×	3,028	1,517	2,00×
 
-3.5.3 Comparação Direta (AVL × Rubro-Negra)
-Tabela 1: Tempo por Operação (µs) e Razão de Desempenho (AVL / Rubro-Negra)
-n Inserção
+Também olhamos quantas rotações e recolorações cada árvore precisou, em média, por operação:
+Tabela 4 – Rotações e recolorações médias por operação
+n	Rot./inserção AVL	Rot./inserção RN	Recol./inserção RN	Rot./remoção AVL	Rot./remoção RN	Recol./remoção RN
+1.000	0,71	0,58	0,52	0,42	0,44	0,14
+10.000	0,69	0,58	0,51	0,43	0,40	0,09
+90.000	0,70	0,58	0,51	0,43	0,40	0,10
 
-AVL/RN Razão Busca
+Por fim, comparamos a altura final de cada árvore com os limites teóricos de pior caso:
+Tabela 5 – Altura final versus limites teóricos
+n	log₂(n)	Altura AVL	Limite AVL (≈1,44·log₂(n+2))	Altura RN	Limite RN (2·log₂(n+1))
+1.000	9,97	11	≈ 14,4	11	≈ 20,0
+10.000	13,29	15	≈ 19,1	15	≈ 26,6
+90.000	16,46	19	≈ 23,7	19	≈ 32,9
 
-AVL/RN Razão Remoção
+3.5.4 O que os resultados mostram
+A altura cresce devagar, como esperado. De 1.000 para 90.000 jogadores, o número de registros foi multiplicado por 90, mas a altura subiu só de 11 para 19. Isso acompanha o crescimento de log₂ n e bate com o O(log n) que prevemos para busca, inserção e remoção. As duas árvores ficaram bem abaixo dos limites de pior caso (Tabela 5), o que também faz sentido, já que esses limites são garantias e não o que normalmente acontece.
+AVL e Rubro-Negra terminaram com a mesma altura. Isso nos surpreendeu um pouco. Esperávamos que a AVL, por ser mais rígida, ficasse mais baixa, mas com o nosso dataset as duas chegaram a 11, 15 e 19 nos três volumes. Ou seja, a vantagem teórica da AVL em balanceamento não apareceu na prática.
+Na busca, o empate é praticamente total. A diferença entre as duas ficou entre 4% e 18%, o que é coerente com alturas iguais. A busca também não faz nenhuma rotação nem recoloração. Um detalhe que notamos é que o tempo por busca cresceu cerca de 2,2 vezes de 1.000 para 90.000, enquanto o log₂ n cresceu só 1,65 vez. Nossa hipótese é que isso venha do cache do processador, já que uma árvore maior não cabe nos níveis mais rápidos de memória. Isso não contradiz o Big-O, que não considera esses fatores constantes de hardware.
+Na inserção, a Rubro-Negra ganha com folga. Ela foi mais rápida em todos os volumes, e a diferença aumentou com o tamanho: 1,45 vez com 1.000 registros e 2,46 vezes com 90.000. Os contadores ajudam a explicar. A AVL faz cerca de 0,70 rotação por inserção contra 0,58 da RN, e a RN ainda compensa com recolorações (cerca de 0,51 por inserção), que são operações muito baratas. Além disso, a AVL precisa atualizar altura e fator de balanceamento em todo o caminho de volta até a raiz. Outro ponto importante é que o total de rotações cresce de forma linear com n (711, 6.945 e 62.718 na AVL), isto é, cerca de uma rotação por inserção em média. Isso confirma o O(1) de rebalanceamento que colocamos nas tabelas de complexidade.
+Na remoção, a história é parecida. A Rubro-Negra foi de 1,37 a 2,00 vezes mais rápida. Aqui o número de rotações é quase igual nas duas (entre 0,40 e 0,44 por remoção), e a RN faz poucas recolorações. Então a diferença de tempo vem mais do trabalho de recalcular alturas na AVL do que das rotações em si. A remoção continua sendo O(log n), e a média de rotações por remoção quase não muda quando n cresce.
+3.5.5 Conclusão
+No geral, os experimentos confirmaram a teoria: todas as operações escalam em O(log n) e o rebalanceamento custa O(1) amortizado. Como as alturas finais foram iguais, o que realmente separou as duas estruturas foi o custo de manter o balanceamento. Para uma carga com muitas inserções e remoções, a Rubro-Negra se saiu melhor, chegando a ser 2,5 vezes mais rápida na inserção com 90.000 registros. Para uma carga dominada por buscas, as duas são equivalentes.
+3.5.6 Limitações
+Vale registrar alguns cuidados na hora de interpretar os números. Os tempos de busca são muito pequenos (menos de 1 ms no total para 2.000 buscas), então podem sofrer bastante com ruído de medição; o ideal seria repetir o benchmark várias vezes e tirar a média. Além disso, o maior volume testado foi de 90.000 registros, e não necessariamente o dataset completo. Por fim, os resultados dependem da máquina em que o teste foi executado, então os valores absolutos podem variar, mas a proporção entre as duas árvores tende a se manter.
 
-AVL/RN Razão
-1.000 0,839 / 0,579 1,45× 0,179 / 0,172 1,04× 0,651 / 0,475 1,37×
-10.000 1,269 / 0,795 1,60× 0,234 / 0,225 1,04× 1,042 / 0,577 1,81×
-90.000 3,337 / 1,358 2,46× 0,392 / 0,331 1,18× 3,028 / 1,517 2,00×
-
-Tabela 2: Rotações e Recolorações Médias por Operação
-n Rot/Ins (AVL) Rot/Ins (RN) Rec/Ins (RN) Rot/Rem
-(AVL)
-
-Rot/Rem
-(RN)
-
-Rec/Rem
-(RN)
-1.000 0,71 0,58 0,52 0,42 0,44 0,14
-10.000 0,69 0,58 0,51 0,43 0,40 0,09
-90.000 0,70 0,58 0,51 0,43 0,40 0,10
-
-Tabela 3: Altura Final Medida vs. Limites Teóricos das Árvores
-n log₂(n) Altura AVL Limite AVL Altura RN Limite RN (2·log₂
-
-(≈1,44·log₂ n) n)
-1.000 9,97 11 ≈ 14,4 11 ≈ 20,0
-10.000 13,29 15 ≈ 19,1 15 ≈ 26,6
-90.000 16,46 19 ≈ 23,7 19 ≈ 32,9
-
-3.5.4 Análise Detalhada e Discussão dos Resultados
-Ao analisarmos os dados obtidos, a primeira coisa que chamou a nossa atenção foi que ambas as
-árvores terminaram com exatamente a mesma altura nos três volumes testados (11 para 1.000, 15 para
-10.000 e 19 para 90.000 nós). Confessamos que esse resultado nos surpreendeu no primeiro momento,
-pois esperávamos que a rigidez da AVL a deixasse ligeiramente mais baixa que a Rubro-Negra.
-Entretanto, compreendemos o motivo: a distribuição dos dados de entrada (ordenados
-lexicograficamente pelas chaves compostas) permitiu que a Rubro-Negra se rearranjasse de forma
-quase perfeita, mantendo sua altura muito próxima do ideal e bem abaixo do limite teórico de worst-
-case (2 · log₂(n+1)).
-Em termos de crescimento, quando multiplicamos o volume n por 90 (passando de 1.000 para 90.000
-elementos), a altura das árvores subiu apenas de 11 para 19 níveis. Esse comportamento acompanha de
-forma perfeita a curva logarítmica log₂ n, confirmando na prática o limite assintótico O(log n) para
-buscas, inserções e remoções.
-No teste de busca, o tempo médio por consulta foi virtualmente idêntico em ambas as estruturas (com
-razões de 1,04× a 1,18× favoráveis à Rubro-Negra). Como a altura final de ambas foi igual, a distância
-percorrida da raiz até as folhas foi a mesma. Observamos também que o tempo de busca cresceu cerca
-de 2,2× entre n=1.000 e n=90.000, enquanto log₂ n cresceu 1,65×. Trabalhamos com a hipótese de que
-essa pequena diferença decorre de efeitos de cache da CPU — em volumes maiores, os nós da árvore
-não cabem inteiramente na memória cache L1/L2, gerando mais cache misses durante a comparação de
-strings.
-Na inserção, a Rubro-Negra levou uma vantagem expressiva em todos os cenários, sendo 1,45× mais
-rápida com 1.000 nós e atingindo 2,46× mais velocidade com 90.000 nós (0,122s contra 0,300s da AVL).
-Essa diferença se explica pela mecânica de rebalanceamento: enquanto a AVL realiza ≈ 0,70 rotações
-por inserção, a Rubro-Negra realiza apenas ≈ 0,58 rotações, compensando com ≈ 0,51 recolorações.
-Como alterar a cor de um nó é uma operação simples de atribuição em memória, a Rubro-Negra evita a
-sobrecarga de atualização de alturas e múltiplos ponteiros que a AVL exige.
-Na remoção, o padrão se repetiu: a Rubro-Negra foi de 1,37× a 2,00× mais rápida. Curiosamente, a
-média de rotações por remoção foi bastante parecida entre as duas (≈ 0,40 a 0,44). A vantagem
-temporal da Rubro-Negra veio, portanto, da simplicidade em manter as propriedades de cores sem a
-necessidade de recalcular dinamicamente os fatores de balanceamento dos nós ancestrais ao longo do
-caminho de volta.
-
-3.5.5 Conclusão da Comparação
-Em síntese, os nossos testes práticos validaram integralmente as previsões da literatura teórica. Para
-sistemas focados predominantemente em consultas e leituras (onde o dataset permanece
-relativamente estático), ambas as estruturas oferecem desempenho equivalente. Por outro lado, em
-sistemas dinâmicos que exigem constantes inserções e remoções de atletas (como a base de dados da
-FIBA), a Árvore Rubro-Negra provou ser a melhor escolha arquitetural, apresentando ganho de até 2,5×
-em velocidade de escrita sem sacrificar a eficiência das buscas.
-3.5.6 Observações e Limitações do Estudo
-1. Ruído de Medição nas Buscas: Como o tempo individual de cada busca é extremamente reduzido
-(fração de microssegundos), as medições estão sujeitas a variações de clock do sistema operacional.
-Para trabalhos futuros, sugerimos executar o benchmark em múltiplas passagens e utilizar a média
-amostral com intervalo de confiança.
-2. Teto do Benchmark: O teto dos nossos testes práticos foi fixado em n = 90.000 registros únicos. A
-base de dados completa possui um volume ligeiramente superior, mas 90.000 nós foi a amostragem
-perfeita para demonstrar a estabilidade das árvores em larga escala.
-3. Alinhamento de Documentação: Notamos que a Seção 3.3 do planejamento inicial mencionava
-hipoteticamente &#39;15.800 registros com altura 13&#39;. Esclarecemos que esse número era uma estimativa
-preliminar baseada num recorte inicial do JSON; os testes oficiais finais foram consolidados com n =
-90.000 (altura 19).
 ------------------------
 ### 4.1 Pré-requisitos (Para Entrega 2)
 
