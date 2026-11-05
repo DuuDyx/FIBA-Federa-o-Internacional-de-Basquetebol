@@ -1,9 +1,9 @@
 #  FIBA – Jogadores de Basquete Internacionais
 
 # Integrantes do Grupo
-* Eduardo Dylan Mendes — RA: 43541194 
+* Eduardo Dylan Mendes — Rgm: 43541194 
 * Erick Ronald Huanca Clemente — RGM 44261837
-*	Marcos Antonio Ribeiro Lago Junior 46450769
+*	Marcos Antonio Ribeiro Lago Junior - RGM 46450769
 *	Vitor Boer Blanco — RGM 42402794
 *	Vagner Ferreira José Maria — RGM 44054807
 
