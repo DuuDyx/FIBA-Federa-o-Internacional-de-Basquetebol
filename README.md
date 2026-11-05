@@ -115,6 +115,51 @@ Avaliar o funcionamento das árvores AVL e Rubro-Negra, observando a implementa�
 | Chave duplicada | inserir alguém com o mesmo nome, nacionalidade e data de nascimento de um jogador que já está na árvore | O novo registro é rejeitado e o original continua como estava (não atualizamos). A quantidade de nós e a altura não mudam. |
 | Remoção com rebalanceamento em cascata | remover vários nós que desbalanceiam os ancestrais | Depois de cada remoção a árvore continua balanceada (|FB| ≤ 1 na AVL, regras rubro-negras válidas na Rubro-Negra), com um nó a menos e o percurso em ordem ainda crescente. |
 | Busca do último registro em ordem alfabética | buscar o maior elemento da árvore | Ele é encontrado com no máximo "altura" comparações, ou seja, O(log n). |
+### 3.4 Testes de Desempenho
+
+Para comparar a Árvore AVL e a Árvore Rubro-Negra, o grupo mediu o **tempo de execução** de inserções, buscas e remoções, e registrou também a altura da árvore e o número de rotações e recolorações. O **uso de memória** não foi medido, apenas estimado (item 3.4.3). Os resultados obtidos estão na seção 3.5.
+
+#### 3.4.1 Tamanhos de entrada
+
+Foram usados **1.000, 10.000 e 90.000 registros**, retirados do dataset de 96.013 registros. Os registros são embaralhados com uma semente fixa (`42`), de modo que as duas árvores recebem exatamente a mesma sequência, e cada tamanho usa os `n` primeiros da lista embaralhada. Em cada tamanho, o teste faz:
+
+| n | Inserções | Buscas | Remoções |
+|---|---|---|---|
+| 1.000 | 1.000 | 2.000 | 100 |
+| 10.000 | 10.000 | 2.000 | 1.000 |
+| 90.000 | 90.000 | 2.000 | 9.000 |
+
+As buscas são 1.000 de jogadores que existem na árvore e 1.000 de jogadores que não existem. As remoções correspondem a 10% de `n`.
+
+#### 3.4.2 Tempo de execução
+
+Cada programa (`src/avl.c` e `src/rubro_negra.c`) é executado com o argumento `--bench` (o código procura o dataset em `../dataset/jogadores.dat`, ou seja, a partir da pasta `src/`) e grava os resultados em um arquivo CSV, guardado na pasta `resultados/`.
+
+- **Relógio:** nos testes (Windows), `QueryPerformanceCounter`. O código usa `clock_gettime(CLOCK_MONOTONIC)` em Linux/macOS.
+- **O que é cronometrado:** cada lote de operações (inserções, buscas e remoções) tem seu próprio cronômetro. A leitura do arquivo, a preparação dos dados e as verificações de consistência ficam fora da medição.
+- **Repetições:** cada tamanho é executado 5 vezes, com a árvore recriada do zero, e o tempo registrado é a média das 5 execuções.
+- **Tempo por operação:** `tempo_total / número de operações`, em microssegundos.
+- **Contagens registradas:** altura da árvore (folha = 0), rotações (uma rotação dupla conta como 2) e recolorações (só na Rubro-Negra).
+
+#### 3.4.3 Uso de memória
+
+O uso de memória **não foi medido**, apenas estimado. Em um compilador de 64 bits, o nó das duas árvores ocupa 424 bytes (396 bytes do registro do jogador mais ponteiros e um campo extra), então o consumo é de `n × 424` bytes: cerca de **38 MB** para 90.000 registros, igual nas duas estruturas.
+
+#### 3.4.4 Ambiente de teste
+
+| Item | Valor |
+|---|---|
+| Processador | Intel Core i3-10100F (4 núcleos, 8 threads) |
+| Memória RAM | 12 GB |
+| Sistema operacional | Windows |
+| Compilador | GCC (`gcc`) |
+| Flags de compilação | `-Wall -Wextra -std=c11` |
+
+#### 3.4.5 Observações
+
+- Os testes usam apenas ordem **aleatória** de inserção; o caso extremo de ordem crescente (item 3.3) não está incluído no benchmark.
+- Se o dataset tiver chaves repetidas (item 3.3), elas são rejeitadas na inserção e uma segunda remoção da mesma chave não remove nada. Nesse caso a coluna `operacoes` do CSV conta as operações **tentadas**, e o programa pode exibir `ATENCAO` no tamanho de 90.000.
+
 
 3.5 Resultados Obtidos e Análise Comparativa
 
